@@ -1,34 +1,50 @@
-# GenAI Chunking Strategies
+# GenAI Chunking Strategies 🚀
 
-This repository contains Python experiments and reference implementations for different document chunking techniques used in Retrieval-Augmented Generation (RAG), semantic search, and LLM-powered pipelines.
+<div align="center">
 
-The goal is to explore how text should be split into chunks depending on the use case, model, and retrieval objective. Each script demonstrates a different strategy and helps compare trade-offs in granularity, semantic preservation, retrieval quality, and cost.
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-Community-1C3C5C?style=for-the-badge)
+![RAG](https://img.shields.io/badge/RAG-Chunking-FF6B6B?style=for-the-badge)
+![LLM](https://img.shields.io/badge/LLM-Experiments-6C63FF?style=for-the-badge)
 
-## Repository overview
+</div>
 
-This project includes multiple chunking approaches:
+A practical collection of Python experiments for exploring different text chunking strategies used in Retrieval-Augmented Generation (RAG), semantic search, and LLM pipeline design.
+
+This repository compares multiple approaches to splitting long documents into meaningful chunks, helping you understand how chunk size, structure, and retrieval strategy affect downstream AI performance.
+
+## Why this repo matters ✨
+
+Chunking is one of the most important preprocessing decisions in a RAG workflow:
+
+- It controls the size and granularity of retrieved context
+- It affects semantic relevance and retrieval accuracy
+- It impacts the cost and latency of LLM calls
+- It influences how well the model understands document structure
+
+## Repository highlights 📌
+
+This project demonstrates several chunking techniques, including:
 
 - Fixed-size chunking
 - Recursive chunking
 - Semantic chunking
-- Document/Markdown-aware chunking
+- Markdown/document-aware chunking
 - Hierarchical chunking
 - Contextual chunking
 - Agent-based chunking
 - Proposition-based chunking
 - Late chunking
 
-It also includes a sample PDF (`India's.pdf`) to run the examples end-to-end.
-
-## Project structure
+## Project structure 🗂️
 
 ```text
-.
+GENAI_CHUNKING_STRATEGIES/
 ├── Agent_Chunking.py
 ├── Contextual_Chunking.py
 ├── Document_based_chunking.py
 ├── Hierarchical_Chunking.py
-├── India\'s.pdf
+├── India's.pdf
 ├── Late_Chunking.py
 ├── README.md
 ├── Recursive_Chunking.py
@@ -37,99 +53,92 @@ It also includes a sample PDF (`India's.pdf`) to run the examples end-to-end.
 ├── proposition_based_chunking.py
 ├── requirements.txt
 ├── ALL_CHUNKING_STRATEGIES.jpeg
-└── .venv/   (optional, created locally)
+└── .venv/   # optional local environment
 ```
 
-## Chunking strategies in this repo
+## Strategy overview 🧠
 
-### 1. Fixed-size chunking
+### 1) Fixed-size chunking
 File: `fixed_size_chunking.py`
 
-Splits documents into chunks of a fixed number of characters or tokens with a configurable overlap. This is useful for simple retrieval systems and strict context windows.
+Creates chunks of a fixed character size with overlap. Best for simple and fast document splitting when uniform chunk length is required.
 
-### 2. Recursive chunking
+### 2) Recursive chunking
 File: `Recursive_Chunking.py`
 
-Recursively splits text using meaningful boundaries like paragraphs, new lines, and spaces before falling back to character-based splits. This is a strong default for mixed-format documents.
+Splits text by natural boundaries like paragraphs, lines, and spaces before falling back to character-level splitting.
 
-### 3. Semantic chunking
+### 3) Semantic chunking
 File: `Semantic_Chunking.py`
 
-Uses embeddings and similarity-based logic to group text into semantically coherent chunks. This is especially helpful when preserving topic continuity matters more than fixed length.
+Uses embeddings and semantic similarity to group related text into coherent chunks instead of rigid size boundaries.
 
-### 4. Document/Markdown-based chunking
+### 4) Document / Markdown-aware chunking
 File: `Document_based_chunking.py`
 
-Uses headers and document structure to split content based on sections or markdown hierarchy. This works well for docs, knowledge bases, and technical writing.
+Uses document structure and headers to split content by section, which is useful for technical documentation, knowledge bases, and markdown-heavy corpora.
 
-### 5. Hierarchical chunking
+### 5) Hierarchical chunking
 File: `Hierarchical_Chunking.py`
 
-Creates parent-child chunk relationships so retrieval can access both broad context and more detailed nested chunks.
+Creates a parent-child relationship between large and small chunks so retrieval can balance context breadth and detail.
 
-### 6. Contextual chunking
+### 6) Contextual chunking
 File: `Contextual_Chunking.py`
 
-Adds surrounding context to each chunk before embedding or retrieval, which can improve relevance and downstream prompt quality.
+Adds short contextual metadata around each chunk to help retrieval and prompting systems keep track of surrounding meaning.
 
-### 7. Agent-based chunking
+### 7) Agent-based chunking
 File: `Agent_Chunking.py`
 
-Uses an LLM to decide where chunk boundaries should be placed dynamically based on content semantics and context.
+Uses an LLM to decide chunk boundaries dynamically based on document content and task intent.
 
-### 8. Proposition-based chunking
+### 8) Proposition-based chunking
 File: `proposition_based_chunking.py`
 
-Breaks text into atomic facts or propositions so retrieval can surface precise, question-relevant evidence.
+Breaks text into atomic statements or facts to support more precise retrieval and fact-grounded QA.
 
-### 9. Late chunking
+### 9) Late chunking
 File: `Late_Chunking.py`
 
-Creates contextual embeddings across the whole document before splitting token ranges, which can improve retrieval quality for some architectures.
+Creates contextual embeddings before splitting token ranges, which can improve representation quality in some retrieval pipelines.
 
-## Why chunking matters
+## Setup ⚙️
 
-Chunking is a crucial preprocessing step in RAG systems because it affects:
-
-- retrieval quality
-- context relevance
-- cost and latency
-- LLM reasoning quality
-- memory efficiency
-
-A poor chunking strategy can reduce retrieval accuracy even when the model itself is strong.
-
-## Setup
-
-1. Clone the repository:
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/KodumuruRaja/GENAI_CHUNKING_STRATEGIES.git
 cd GENAI_CHUNKING_STRATEGIES
 ```
 
-2. Create and activate a virtual environment (recommended):
+### 2. Create a virtual environment
 
 ```bash
 python -m venv .venv
+```
+
+Activate it:
+
+- Linux / macOS:
+
+```bash
 source .venv/bin/activate
 ```
 
-On Windows:
+- Windows:
 
 ```bash
 .venv\Scripts\activate
 ```
 
-3. Install dependencies:
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Requirements
-
-The project uses the following Python packages:
+## Dependencies 📦
 
 ```text
 langchain_community == 0.4.2
@@ -142,9 +151,7 @@ einops == 0.8.2
 litellm == 1.105.0
 ```
 
-## Run the scripts
-
-Each script can be executed directly with Python:
+## Run the scripts ▶️
 
 ```bash
 python fixed_size_chunking.py
@@ -158,11 +165,11 @@ python proposition_based_chunking.py
 python Late_Chunking.py
 ```
 
-If you are using Python 3 on some systems, replace `python` with `python3`.
+If your system uses `python3`, replace `python` accordingly.
 
-## Important note about the sample PDF
+## Important note about the PDF 📄
 
-Most scripts currently reference the PDF through a hardcoded Windows-style path like:
+Most scripts currently use a hardcoded Windows path such as:
 
 ```python
 r"C:\Users\Megha\Desktop\GENAI_CONCEPTS\Chunking_Strategies\India's.pdf"
@@ -170,8 +177,8 @@ r"C:\Users\Megha\Desktop\GENAI_CONCEPTS\Chunking_Strategies\India's.pdf"
 
 This path is environment-specific and may not exist on your machine. To run the scripts successfully:
 
-- place the `India's.pdf` file in the project root, or
-- update the file path in each script to match your local environment
+- keep `India's.pdf` in the repository root, or
+- update each script to use your local PDF path
 
 Example:
 
@@ -179,21 +186,25 @@ Example:
 pdf_path = "./India's.pdf"
 ```
 
-## Notes
+## Notes 📝
 
-- This repository is designed for learning and experimentation.
-- Some scripts may require internet access or access to an LLM API depending on the implementation.
-- For production use, you should benchmark and compare chunking strategies on your own documents and retrieval tasks.
-- You may want to tune chunk size, overlap, and embedding settings based on your dataset.
+- This repository is designed for learning and experimentation
+- Some scripts may require internet connectivity or model access
+- Production systems should benchmark strategies on real data
+- Tuning chunk size, overlap, and embedding settings is often essential
 
-## License
+## Visual summary 🖼️
 
-This project is provided for educational and experimental purposes. If you plan to share or reuse it publicly, consider adding an explicit license file.
-
-## Visual overview
-
-The repository includes a visual summary image:
+The repo also includes a quick visual reference:
 
 - `ALL_CHUNKING_STRATEGIES.jpeg`
 
-This file provides a quick comparison of the strategies implemented in this project.
+## License 📜
+
+This project is shared for educational and experimental purposes. If you plan to reuse or distribute it publicly, adding a formal license file is recommended.
+
+<div align="center">
+
+Made with ❤️ for exploring GenAI chunking strategies.
+
+</div>
