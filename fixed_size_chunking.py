@@ -1,0 +1,23 @@
+from langchain_community.document_loaders import PyPDFLoader
+
+def pdf_loader(file_path):
+    loader = PyPDFLoader(file_path)
+    data = loader.load()
+    return data
+
+documents = pdf_loader(r"C:\Users\Megha\Desktop\GENAI_CONCEPTS\Chunking_Strategies\India's.pdf")
+print(f"Successfully loaded {len(documents)} pages.")
+
+
+from langchain_text_splitters import CharacterTextSplitter
+
+
+def chunk_documents(documents, chunk_size , chunk_overlap):
+    text_splitter = CharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    #chunks = text_splitter.split_text(documents[0].page_content) it works for single page but not for multiple pages because it expects a string, not a list of Document objects. Use split_documents instead.
+    chunks = text_splitter.split_documents(documents)
+    return chunks
+
+chunks1 = chunk_documents(documents, chunk_size=100, chunk_overlap=20)
+print(f"Number of chunks created: {len(chunks1)}")
+print(chunks1[0])  # Print the first chunk to verify
