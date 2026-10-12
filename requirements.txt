@@ -1,0 +1,8 @@
+langchain_community == 0.4.2
+pypdf ==6.20.0
+langchain_huggingface ==1.2.3
+sentence-transformers == 6.1.0 
+langchain_experimental == 0.4.2
+openai == 3.29.0
+einops == 0.8.2
+litellm  == 1.105.0
